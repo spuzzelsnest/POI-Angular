@@ -21,7 +21,12 @@
             "aot": true,
             "assets": [
               "src/clt/favicon.ico",
-              "src/clt/assets"
+              "src/clt/assets",
+                {
+                    "glob": "**/*",
+                    "input": "node_modules/leaflet/dist/images/",
+                    "output": "./assets"
+                }
             ],
             "styles": [
               "src/clt/styles.css"
