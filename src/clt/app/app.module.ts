@@ -10,6 +10,7 @@ import { DescBoxComponent } from './desc-box/desc-box.component';
 import { SearchComponent } from './search/search.component';
 import { FooterComponent } from './footer/footer.component';
 import { MarkerService } from './_services/marker.service';
+import { PopUpService } from './_services/pop-up.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MarkerService } from './_services/marker.service';
     AppRoutingModule
   ],
   providers: [
-    MarkerService
+    MarkerService,
+    PopUpService
   ],
   bootstrap: [AppComponent]
 })

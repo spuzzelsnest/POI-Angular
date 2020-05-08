@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import pics from '../../assets/data/markers.json';
 import * as L from 'leaflet';
 
@@ -8,12 +9,12 @@ import * as L from 'leaflet';
 })
 export class MarkerService {
     
-  constructor(private http: HttpClient) { }
+constructor(private http: HttpClient,
+            private popupService: PopUpService) { }
     
   makeArticleMarkers(map: L.map): void {
       
     pics.forEach(function (value) {
-  console.log(value.lat)
         const lat = value.lat;
         const lng = value.lng;
         const marker = L.marker([lat, lng]).addTo(map);
