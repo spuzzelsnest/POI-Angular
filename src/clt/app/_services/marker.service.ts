@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import pics from '../../assets/data/markers.json';
+import { PopUpService } from './pop-up.service';
 import * as L from 'leaflet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarkerService {
-    
+pics = [];
 constructor(private http: HttpClient,
             private popupService: PopUpService) { }
-    
+
   makeArticleMarkers(map: L.map): void {
       
-    pics.forEach(function (value) {
-        const lat = value.lat;
-        const lng = value.lng;
-        const marker = L.marker([lat, lng]).addTo(map);
-    });
-    //const marker1 = L.marker([49, 6]).addTo(map);
-    //const circle = L.circleMarker([50.1, 6]).addTo(map);
+  this.http.get('assets/data/markers.json').subscribe(media =>{
+     
+for (const c of media) {
+      const marker = L.marker([c.lat, c.lng]);
+            marker.bindPopup(this.popupService.makePicPopup(c));
+            marker.addTo(map);
+  }
+  });
   }
 }
