@@ -21,6 +21,7 @@
     "@angular/router": "~9.0.1",
     "dotenv": "^8.2.0",
     "leaflet": "^1.6.0",
+    "leaflet.markercluster": "^1.4.1",
     "pg": "^7.18.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

@@ -1,11 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
-import { icon, Marker } from 'leaflet';
+import 'leaflet.markercluster';
 
 import { MarkerService } from '../_services/marker.service';
-
-
-
 
 @Component({
   selector: 'app-map',
@@ -32,6 +29,5 @@ export class MapComponent implements AfterViewInit {
             id: 'cartodb_labels',
             attribution: '&copy; '
          }).addTo(this.map);
-        
     }
 }

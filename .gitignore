@@ -48,5 +48,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/media
 /src/clt/assets/pictures
 /src/clt/assets/media
