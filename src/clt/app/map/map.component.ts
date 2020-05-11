@@ -5,12 +5,7 @@ import { icon, Marker } from 'leaflet';
 import { MarkerService } from '../_services/marker.service';
 
 
-const AlliedPic = L.icon({
-        iconUrl: 'assets/icons/Afoto.png',
-        iconSize: [25, 41],
-        });
 
-L.Marker.prototype.options.icon = AlliedPic;
 
 @Component({
   selector: 'app-map',
@@ -33,5 +28,10 @@ export class MapComponent implements AfterViewInit {
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.map);
+         L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png',{
+            id: 'cartodb_labels',
+            attribution: '&copy; '
+         }).addTo(this.map);
+        
     }
 }
