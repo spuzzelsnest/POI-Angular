@@ -1,0 +1,22 @@
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: rgba(255,255,255,0.66);
+  width: 750px;
+  top: 25px;
+  padding-top: 25px;
+  padding-left: 7px;
+  width: 600px;
+  max-height: 640px;
+  right:  32px;
+  overflow: auto;
+  position: absolute;
+}
+
+.leaflet-popup-content-wrapper a {
+  color:rgba(255,255,255,0.5);
+  }
+
+.leaflet-popup-tip {
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-top:15px solid #2c3e50;
+  }
