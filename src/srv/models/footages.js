@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const tblFootages = sequelize.define('tblFootages', {
+  const footages = sequelize.define('tblFootages', {
     typeId: DataTypes.NUMERIC,
     name: DataTypes.STRING,
     title: DataTypes.STRING,
@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     published: DataTypes.BOOLEAN
   }, {});
     
-  tblFootages.associate = function(models) {
+  footages.associate = function(models) {
       
-   tblFootages.hasMany (models.tblMediaType, {
+   footages.hasMany (models.mediaType, {
         foreignKey: 'typeId'
     })
 };  
 
-return tblFootages;
+return footages;
 };

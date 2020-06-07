@@ -9,56 +9,20 @@ class LogicController{
     };
     
     getMeidaType(req, res, next){
-        
-        if (!req.params.key){
-            return res.status(404).send({
-                success: 'false',
-                message: 'Key is required',
-            });
-        }else{
-        models.User.findOne({
-             where: {key: req.params.key},
+        models.mediaTypes.findAll({
+            include: type
         })
-            .then(userLogin => res.status(200).send({
-                success: 'true',
-                message: `Key found =${userLogin.key}`,
-                userLogin
-            }));
-        }
-    }
-    
-    getMedia(req, res, next){
-        let fetshedPosts;
-        const pageSize = +req.query.pagesize;
-        const currentPage = +req.query.page;
-        const offset = (pageSize * (currentPage - 1));
-        const limit =  pageSize;
-     
-        models.Log.findAndCountAll({
-            include: [{
-                model: models.Logitem ,
-                attributes: ['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
-                required: true
-            },
-                      {
-                model: models.User
-            }],
-            limit,
-            offset,
-            where: {'$User.key$': req.params.key},
-            order: [['day', 'DESC'],]
-        })
-        .then(logs => {
-            fetshedPosts = logs;
-        }).then(count => {
-            res.status(200).send({
-            fetshedPosts
-        })});
+        .then(mediaTypes =>{
+            res.status(200).json(authors);
+      })
+      .catch(function (error) {
+        res.status(500).json(error);
+      });
     }
     
     getFootage(req, res, next){
 
-        models.Log.findOne({
+        models.tblfootages.findOne({
             include: [{
                 model: models.Logitem
             },{
