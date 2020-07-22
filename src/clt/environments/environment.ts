@@ -5,7 +5,7 @@
 export const environment = {
   version: 'Beta 1.1',
   production: false,
-  apiUrl: 'http://localhost:1944/api/'
+  apiUrl: 'http://localhost:env.SPORT/api/'
 };
 
 /*
