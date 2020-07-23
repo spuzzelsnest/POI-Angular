@@ -1,6 +1,6 @@
 {
   "name": "ww2web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "node_modules/.bin/nodemon src/srv/index.js --exec babel-node --",

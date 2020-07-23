@@ -1,7 +1,8 @@
 {
   "name": "ww2web",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
