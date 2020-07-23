@@ -4,9 +4,16 @@ A remake in angular of a project once started in 2007. This is a POI app based o
 
 # The APP
 
+## Prerequisites
+
+postgress db
+
+- Create db
+- export env
+
+
 ## Install
 
-- Install postgress
 - run npm i
 - run migrations
 - run seeders
