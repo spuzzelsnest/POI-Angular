@@ -1,11 +1,15 @@
 # Ww2web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+Angular remake of a former project from 2007. An interactive map with POI's in Angular with Experess 
 
-## Development server
+
+!///!
+
+## Running the APP
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+Run `ng serve` for backend
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
@@ -25,3 +29,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+!///!
+
+
+# The APP
+## Install
+
+. postgress db 
+. run migrations
+. run seeders
+
+## Run APP
+
+. run backend
+. run app
+
