@@ -1,6 +1,9 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   const footages = sequelize.define('tblFootages', {
+     id:{ type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true 
+    },
     typeId: DataTypes.NUMERIC,
     name: DataTypes.STRING,
     title: DataTypes.STRING,

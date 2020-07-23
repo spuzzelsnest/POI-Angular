@@ -8,34 +8,29 @@ class LogicController{
       res.sendFile(path.join(__dirname, '../public', 'index.html'));
     };
     
-    getMeidaType(req, res, next){
-        models.mediaTypes.findAll({
-            include: type
+    
+    getMedia(req,res, next){
+        let fetshed_mediaType;
+        
+        models.Media.findAndCountAll({
+            include: [{
+                model: models.Footages,
+                attributes:['id','typeId','lat','lng','name','date','title','info','place','country','source','remarks'],
+                required: true
+            }],
+            limit,
+            offset,
+            //where:
+            //order: [['date','place']]
         })
-        .then(mediaTypes =>{
-            res.status(200).json(authors);
-      })
-      .catch(function (error) {
-        res.status(500).json(error);
-      });
+        .then( data =>{
+            fetshed_mediaType = data;
+        }).then(count => {
+            res.status(200).send({
+               fetshed_mediaType 
+            })});
     }
     
-    getFootage(req, res, next){
-
-        models.tblfootages.findOne({
-            include: [{
-                model: models.Logitem
-            },{
-                model: models.User
-            }],
-             where: {
-                '$User.key$': req.params.key,
-                id: req.params.logid
-        }})
-        .then(timelog => res.status(200).send({
-            timelog,
-        }));
-    }
     
 }
 
