@@ -8,10 +8,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
     
   mediaTypes.associate = function(models) {
-    
+
     mediaTypes.belongsTo(models.footages,{
         foreignKey: 'typeId'
     })
+  
   };
   return mediaTypes;
 };

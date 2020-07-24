@@ -1,6 +1,6 @@
 import path from 'path';
 
-import models from '../models';
+import * as models from '../models/index.js';
 
 class LogicController{
 
