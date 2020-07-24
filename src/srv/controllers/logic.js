@@ -1,6 +1,6 @@
 import path from 'path';
 
-import * as models from '../models/index.js';
+import models from '../models';
 
 class LogicController{
 
@@ -9,16 +9,16 @@ class LogicController{
     };
     
     getMedia(req,res, next){
+        
         let fetshed_mediaType;
         
-        models.mediaType.findAndCountAll({
+        models.tblMediaTypes.findAndCountAll({
+            attributes: ['id','type'],
             include: [{
-                model: models.footages,
+                model: models.tblFootages,
                 attributes:['id','typeId','lat','lng','name','date','title','info','place','country','source','remarks'],
                 required: true
             }],
-            limit,
-            offset,
             //where:
             //order: [['date','place']]
         })

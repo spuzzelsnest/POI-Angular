@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   
-    const footages = sequelize.define('Footages', {
+    const footage = sequelize.define('tblFootages', {
      id:{ type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true 
@@ -19,12 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     published: DataTypes.BOOLEAN
   }, {});
     
-  footages.associate = function(models) {
+  footage.associate = function(models) {
       
-   footages.hasOne(models.MediaTypes, {
+   footage.hasOne(models.tblMediaTypes, {
         foreignKey: 'typeId'
     })
 };  
 
-return footages;
+return footage;
 };
