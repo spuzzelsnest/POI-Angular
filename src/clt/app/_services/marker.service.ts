@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PopUpService } from './pop-up.service';
+import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 import * as L from 'leaflet';
 
+import { PopUpService } from './pop-up.service';
+import { MediaSelectService } from './media-select.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,11 @@ export class MarkerService {
 
 pics = [];
 
-constructor(private http: HttpClient,
-            private popupService: PopUpService) { }
+constructor(
+    public rest: MediaSelectService,
+    private http: HttpClient,
+    private popupService: PopUpService,
+    private router: Router) { }
 
   makeArticleMarkers(map: L.map): void {
     
@@ -30,7 +35,7 @@ constructor(private http: HttpClient,
                       }
         });
   
-    this.http.get('assets/data/markers.json').subscribe((pics: any) =>{
+    this.rest.getFootage().subscribe((pics: any) =>{
       
       for (const c of pics) {
        

@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, filter, tap } from 'rxjs/operators';
 
-import { environment } from '../environments/environment';
-import { mediaModel } from '.models/mediaModel';
-import { footageModel } from '.models/footageModel';
+import { environment } from '../../environments/environment';
+import { mediaModel } from './models/mediaModel';
+import { footageModel } from './models/footageModel';
 
 const endpoint = environment.apiUrl;
 
@@ -24,23 +24,32 @@ export class MediaSelectService {
     
     private extractMedia(res: Response){
       const media = [];
-      const body = Object(res['fetshedMedia']);
+      const body = Object(res['data']);
       return body || { }; 
     }
     
     private extractFootage(res: Response){
       const footage = [];
-      const body = Object(res[]);
+      const body = Object(res['data']);
       return body || { };
     }
     
-    getMedia(key:string): Observable<mediaModel[]> {
-        
-      return this.http.get<mediaModel[]>(endpoint + key+'/media' + queryParams)
+  getFootage(): Observable<footageModel[]> {
+      return this.http.get<footageModel[]>(endpoint + '/m')
         .pipe(
-            catchError(this.handleError(`getMedia failed`)),
-            map(this.extractLogs)
-       );
-    }
-    
+            catchError(this.handleError(`Get Footage failed`)),
+            map(this.extractFootage)
+         );
+   }
+
+ private handleError<T> (operation = 'operation', result?: T) {
+  return (error: any): Observable<T> => {
+
+    console.error(error);
+    console.log(`${operation} failed: ${error.message}`);
+
+    return of(result as T);
+  };
+}
+
 }
