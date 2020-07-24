@@ -6,7 +6,6 @@ const router = new express.Router();
 
 router.get(express.static('../public'));
 router.get('/api/m', LogicController.getFootage);
-
-router.get('/login', LogicController.start);
+router.get('/api/:id/m', LogicController.getMediaSelection);
 
 export default router;
