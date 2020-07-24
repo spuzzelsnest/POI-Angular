@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node_modules/.bin/nodemon src/srv/index.js --exec babel-node --",
+    "start": "node_modules/.bin/nodemon src/srv/index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

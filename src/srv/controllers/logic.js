@@ -8,13 +8,12 @@ class LogicController{
       res.sendFile(path.join(__dirname, '../public', 'index.html'));
     };
     
-    
     getMedia(req,res, next){
         let fetshed_mediaType;
         
-        models.Media.findAndCountAll({
+        models.mediaType.findAndCountAll({
             include: [{
-                model: models.Footages,
+                model: models.footages,
                 attributes:['id','typeId','lat','lng','name','date','title','info','place','country','source','remarks'],
                 required: true
             }],
@@ -30,8 +29,6 @@ class LogicController{
                fetshed_mediaType 
             })});
     }
-    
-    
 }
 
 const logicController = new LogicController();
