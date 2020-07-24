@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const mediaTypes = sequelize.define('tblMediaTypes', {
+  const mediaTypes = sequelize.define('MediaTypes', {
     id:{ type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true 
@@ -9,10 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     
   mediaTypes.associate = function(models) {
 
-    mediaTypes.belongsTo(models.footages,{
+    mediaTypes.hasMany(models.Footages,{
         foreignKey: 'typeId'
     })
-  
   };
   return mediaTypes;
 };

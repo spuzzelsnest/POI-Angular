@@ -29,6 +29,10 @@ class LogicController{
                fetshed_mediaType 
             })});
     }
+    
+    getFootage(req,res,next){
+        
+    }
 }
 
 const logicController = new LogicController();
