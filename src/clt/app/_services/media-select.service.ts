@@ -35,6 +35,8 @@ export class MediaSelectService {
     }
     
   getFootage(): Observable<footageModel[]> {
+      console.log(endpoint);
+      
       return this.http.get<footageModel[]>(endpoint + '/m')
         .pipe(
             catchError(this.handleError(`Get Footage failed`)),

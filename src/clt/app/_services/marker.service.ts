@@ -11,7 +11,7 @@ import { MediaSelectService } from './media-select.service';
 })
 export class MarkerService {
 
-pics = [];
+extractFootage = [];
 
 constructor(
     public rest: MediaSelectService,
@@ -35,10 +35,12 @@ constructor(
                       }
         });
   
-    this.rest.getFootage().subscribe((pics: any) =>{
+    this.rest.getFootage().subscribe((extractFootage: any) =>{
       
-      for (const c of pics) {
+        console.log(extractFootage)
+      for (const c of extractFootage) {
        
+          
         const marker = L.marker([c.lat, c.lng],
                        {icon:   L.icon({iconUrl:'assets/icons/marker'+c.typeId+'.png',
                                      iconSize: [25, 37]})});

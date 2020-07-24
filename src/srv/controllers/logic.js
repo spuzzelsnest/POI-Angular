@@ -9,16 +9,14 @@ class LogicController{
     };
     
     getFootage(req,res,next){
-
+  
         models.tblFootages.findAll({
-            attributes: ['lat','lng','name','date','title','info','place','country','source','remarks'],
             where: {
                 published: true
             }
-        }).then( data=>{
-            res.status(200).send({
-                data
-            })});
+        }).then(data => res.status(200).send({
+                data,
+            }));
     }
 }
 
