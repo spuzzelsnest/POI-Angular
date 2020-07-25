@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, filter, tap } from 'rxjs/operators';
+import { map, catchError  } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { mediaModel } from './models/mediaModel';
@@ -20,6 +20,8 @@ const httpOptions = {
 })
 export class MediaSelectService {
 
+    id:number;
+
   constructor(private http: HttpClient) { }
     
     private extractMedia(res: Response){
@@ -30,6 +32,12 @@ export class MediaSelectService {
     
     private extractFootage(res: Response){
       const footage = [];
+      const body = Object(res['data']);
+      return body || { };
+    }
+    
+    private extractSelection(res: Response){
+      const selection = [];
       const body = Object(res['data']);
       return body || { };
     }
@@ -50,6 +58,14 @@ export class MediaSelectService {
             map(this.extractFootage)
          );
    }
+  
+  getMediaSelection(id:number): Observable<any>{
+    return this.http.get<any>(endpoint+'/'+id+'/m')
+      .pipe(
+          catchError(this.handleError(`Failed to get Selection`)),
+          map(this.extractSelection)
+        );
+  }
 
  private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
