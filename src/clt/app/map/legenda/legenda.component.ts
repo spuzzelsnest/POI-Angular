@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import { Subscription } from 'rxjs';
+
+import { MediaSelectService } from './../../_services/media-select.service';
 
 @Component({
   selector: 'app-legenda',
@@ -7,13 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LegendaComponent implements OnInit {
+    
+  mediaTypes:any = [];
 
-  constructor() { }
+  constructor(
+    public rest: MediaSelectService,
+     
+    ) { }
 
   ngOnInit(): void {
       
-      
-      
-  }
+    this.rest.getCat().subscribe((cats: {}) => {this.mediaTypes = cats;});
 
+  }
+  
 }

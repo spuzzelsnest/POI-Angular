@@ -10,7 +10,10 @@ import { LegendaComponent } from './map/legenda/legenda.component';
 import { SearchComponent } from './map/search/search.component';
 import { FooterComponent } from './map/footer/footer.component';
 import { MarkerService } from './_services/marker.service';
+import { MediaSelectService } from './_services/media-select.service';
 import { PopUpService } from './_services/pop-up.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,13 @@ import { PopUpService } from './_services/pop-up.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [
     MarkerService,
+    MediaSelectService,
     PopUpService
   ],
   bootstrap: [AppComponent]

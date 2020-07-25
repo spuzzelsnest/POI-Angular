@@ -1,4 +1,8 @@
-<div class='legenda'>
-    TEXT
-
+<div class="legenda">
+    <li *ngFor="let cat of mediaTypes">
+        <mat-checkbox ([ngModel])="checked">
+            <img src="assets/icons/marker{{cat.id}}.png">
+            {{cat.type}}
+        </mat-checkbox>
+    </li>
 </div>

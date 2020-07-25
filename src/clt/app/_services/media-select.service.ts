@@ -24,7 +24,7 @@ export class MediaSelectService {
     
     private extractMedia(res: Response){
       const media = [];
-      const body = Object(res['data']);
+      const body = Object(res['cat']);
       return body || { }; 
     }
     
@@ -33,13 +33,20 @@ export class MediaSelectService {
       const body = Object(res['data']);
       return body || { };
     }
+  
+  getCat(): Observable<mediaModel[]>{
+      return this.http.get<mediaModel[]>(endpoint+'/c')
+          .pipe(
+            catchError(this.handleError(`Failed to get Media`)),
+            map(this.extractMedia)
+         );
+   }
     
   getFootage(): Observable<footageModel[]> {
-      console.log(endpoint);
       
       return this.http.get<footageModel[]>(endpoint + '/m')
         .pipe(
-            catchError(this.handleError(`Get Footage failed`)),
+            catchError(this.handleError(`Failed to get Footage`)),
             map(this.extractFootage)
          );
    }

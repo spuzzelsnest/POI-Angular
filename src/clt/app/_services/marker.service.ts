@@ -37,19 +37,19 @@ constructor(
   
     this.rest.getFootage().subscribe((extractFootage: any) =>{
       
-        console.log(extractFootage)
-      for (const c of extractFootage) {
+      for (const m of extractFootage) {
        
           
-        const marker = L.marker([c.lat, c.lng],
-                       {icon:   L.icon({iconUrl:'assets/icons/marker'+c.typeId+'.png',
+        const marker = L.marker([m.lat, m.lng],
+                       {icon:   L.icon({iconUrl:'assets/icons/marker'+m.typeId+'.png',
                                      iconSize: [25, 37]})});
 
-           marker.bindPopup(this.popupService.makePicPopup(c));
+           marker.bindPopup(this.popupService.makePicPopup(m));
            markers.addLayer(marker);
       }
       
     });
+    
     map.addLayer(markers);
-}
+  }
 }

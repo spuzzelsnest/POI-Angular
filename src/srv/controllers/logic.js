@@ -15,6 +15,16 @@ class LogicController{
             }));
     }
     
+    getCategories(req,res,next){
+        
+        models.tblMediaTypes.findAll({
+            attributes: { exclude: ['createdAt','updatedAt','typeId'] }
+        })
+        .then(cat => res.status(200).send({
+            cat
+        }));
+    }
+    
     getMediaSelection(req,res,next){
         
         if (!req.params.id){
@@ -34,6 +44,7 @@ class LogicController{
             }));
         }
     }
+
 }
 
 const logicController = new LogicController();
