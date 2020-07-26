@@ -5,7 +5,6 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 import { Subscription, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 
-import { MediaSelectService } from './../../_services/media-select.service';
 import { MarkerService } from './../../_services/marker.service';
 
 @Component({
@@ -23,8 +22,7 @@ export class LegendaComponent implements OnInit {
   id:number;
   
   constructor(
-    public rest: MediaSelectService,
-    public markerService: MarkerService,
+    public rest: MarkerService,
     ) { }
 
   ngOnInit(): void {
@@ -32,7 +30,6 @@ export class LegendaComponent implements OnInit {
      this.rest.getCat().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
 
     //this.rest.getMediaSelection(id).subscribe((footage:{})=> {this.footage = footage;});
-    //this.rest.getMediaSelection(this.id).pipe(takeUntil(this.sub)).subscribe((data: {}) =>{this.mediaTypes = data;})
   }
     
   onChange(event, cat){

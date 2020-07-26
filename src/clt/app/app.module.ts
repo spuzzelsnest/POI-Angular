@@ -10,7 +10,6 @@ import { LegendaComponent } from './map/legenda/legenda.component';
 import { SearchComponent } from './map/search/search.component';
 import { FooterComponent } from './map/footer/footer.component';
 import { MarkerService } from './_services/marker.service';
-import { MediaSelectService } from './_services/media-select.service';
 import { PopUpService } from './_services/pop-up.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +34,6 @@ import { MaterialModule } from './material.module';
   ],
   providers: [
     MarkerService,
-    MediaSelectService,
     PopUpService
   ],
   bootstrap: [AppComponent]
