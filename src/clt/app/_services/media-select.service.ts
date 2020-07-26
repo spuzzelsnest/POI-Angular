@@ -22,7 +22,7 @@ export class MediaSelectService {
 
     id:number;
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
     
     private extractMedia(res: Response){
       const media = [];
@@ -42,7 +42,7 @@ export class MediaSelectService {
       return body || { };
     }
   
-  getCat(): Observable<mediaModel[]>{
+    getCat(): Observable<mediaModel[]>{
       return this.http.get<mediaModel[]>(endpoint+'/c')
           .pipe(
             catchError(this.handleError(`Failed to get Media`)),
@@ -50,7 +50,7 @@ export class MediaSelectService {
          );
    }
     
-  getFootage(): Observable<footageModel[]> {
+    getFootage(): Observable<footageModel[]> {
       
       return this.http.get<footageModel[]>(endpoint + '/m')
         .pipe(
@@ -59,7 +59,7 @@ export class MediaSelectService {
          );
    }
   
-  getMediaSelection(id:number): Observable<any>{
+    getMediaSelection(id:number): Observable<any>{
     return this.http.get<any>(endpoint+'/'+id+'/m')
       .pipe(
           catchError(this.handleError(`Failed to get Selection`)),
@@ -67,7 +67,7 @@ export class MediaSelectService {
         );
   }
 
- private handleError<T> (operation = 'operation', result?: T) {
+    private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     console.error(error);

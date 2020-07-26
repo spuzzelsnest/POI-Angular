@@ -12,6 +12,7 @@ import { MediaSelectService } from './media-select.service';
 export class MarkerService {
 
 extractFootage = [];
+id:number;
 
 constructor(
     public rest: MediaSelectService,
@@ -19,7 +20,7 @@ constructor(
     private popupService: PopUpService,
     private router: Router) { }
 
-  makeArticleMarkers(map: L.map): void {
+  makeMarkers(map: L.map): void {
     
     const markers = L.markerClusterGroup({
               spiderfyOnMaxZoom: true,
@@ -34,10 +35,10 @@ constructor(
                                     opacity: 0.5
                       }
         });
-  
-    this.rest.getFootage().subscribe((extractFootage: any) =>{
+    const id = '4';
+    this.rest.getMediaSelection(id).subscribe((extractSelection: any) =>{
       
-      for (const m of extractFootage) {
+      for (const m of extractSelection) {
        
           
         const marker = L.marker([m.lat, m.lng],
@@ -51,5 +52,9 @@ constructor(
     });
     
     map.addLayer(markers);
+  }
+  
+  removeMarkers(map: L.map): void{
+      //remove markers
   }
 }
