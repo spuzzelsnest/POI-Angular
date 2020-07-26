@@ -13,6 +13,7 @@ import { MarkerService } from './_services/marker.service';
 import { MediaSelectService } from './_services/media-select.service';
 import { PopUpService } from './_services/pop-up.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MaterialModule
   ],
   providers: [

@@ -12,6 +12,12 @@ import { MatListModule } from '@angular/material/list';
         MatCheckboxModule,
         MatListModule
     ],
+    imports:[
+        MatToolbarModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatListModule
+    ],
     providers: [],
     declarations: []
 })

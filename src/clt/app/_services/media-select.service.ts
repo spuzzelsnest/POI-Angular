@@ -20,8 +20,6 @@ const httpOptions = {
 })
 export class MediaSelectService {
 
-    id:number;
-
     constructor(private http: HttpClient) { }
     
     private extractMedia(res: Response){
@@ -60,11 +58,11 @@ export class MediaSelectService {
    }
   
     getMediaSelection(id:number): Observable<any>{
-    return this.http.get<any>(endpoint+'/'+id+'/m')
-      .pipe(
-          catchError(this.handleError(`Failed to get Selection`)),
-          map(this.extractSelection)
-        );
+        return this.http.get<any>(endpoint+'/'+id+'/m')
+          .pipe(
+              catchError(this.handleError(`Failed to get Selection`)),
+              map(this.extractSelection)
+            );
   }
 
     private handleError<T> (operation = 'operation', result?: T) {

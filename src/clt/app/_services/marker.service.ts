@@ -20,23 +20,24 @@ constructor(
     private popupService: PopUpService,
     private router: Router) { }
 
-  makeMarkers(map: L.map): void {
+  makeMarkers(map: L.map, data): void {
     
     const markers = L.markerClusterGroup({
               spiderfyOnMaxZoom: true,
-                      showCoverageOnHover: false,
-                      zoomToBoundsOnClick: true,
-                      removeOutsideVisibleBounds:true,
-                      disableClusteringAtZoom: 18,
-                      maxClusterRadius: 5,
-                      spiderLegPolylineOptions: {
-                                    weight: 1.5,
-                                    color: '#222',
-                                    opacity: 0.5
-                      }
+              showCoverageOnHover: false,
+              zoomToBoundsOnClick: true,
+              removeOutsideVisibleBounds:true,
+              disableClusteringAtZoom: 18,
+              maxClusterRadius: 5,
+              spiderLegPolylineOptions: {
+                        weight: 1.5,
+                        color: '#222',
+                        opacity: 0.5
+              }
         });
-    const id = '4';
-    this.rest.getMediaSelection(id).subscribe((extractSelection: any) =>{
+    this.id = id;
+
+    this.rest.getMediaSelection(this.id).subscribe((extractSelection: any) =>{
       
       for (const m of extractSelection) {
        
