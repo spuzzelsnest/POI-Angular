@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError  } from 'rxjs/operators';
 
@@ -49,7 +49,7 @@ constructor(
       return body || { };
     }
     
-    getCat(): Observable<mediaModel[]>{
+    getCategories(): Observable<mediaModel[]>{
           return this.http.get<mediaModel[]>(endpoint+'/c')
               .pipe(
                 catchError(this.handleError(`Failed to get Media`)),
@@ -109,7 +109,7 @@ constructor(
         map.addLayer(markers);
       }
   
-  private handleError<T> (operation = 'operation', result?: T) {
+    private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     console.error(error);

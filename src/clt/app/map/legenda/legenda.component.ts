@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule} from '@angular/material/checkbox';
@@ -15,29 +15,35 @@ import { MarkerService } from './../../_services/marker.service';
 
 export class LegendaComponent implements OnInit {
 
+  isChecked:boolean = true;
   private sub = new Subject();
   private map;
   mediaTypes:any = [];
-  footage:any=[];
+  footage:any = [];
   id:number;
+
   
   constructor(
     public rest: MarkerService,
     ) { }
 
   ngOnInit(): void {
-
-     this.rest.getCat().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
-
-    //this.rest.getMediaSelection(id).subscribe((footage:{})=> {this.footage = footage;});
+     this.rest.getCategories().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
   }
-    
-  onChange(event, cat){
 
-    console.log(cat);
-    this.id = cat.id;
-    this.rest.getMediaSelection(this.id).subscribe((extractSelection: any) =>{this.footage = extractSelection});
-      
-      console.log(this.footage);
+  onChange($event, cat){
+      console.log(cat.isChecked);
+      if($event == true){
+          this.id = cat.id;
+          console.log(this.id);
+          this.rest.getMediaSelection(this.id)
+                            .pipe(takeUntil(this.sub))
+                            .subscribe((extractSelection: any) =>{this.footage = extractSelection});
+          console.log(this.footage);
+      }
+  }
+
+   ngOnDestroy(){
+       if(this.sub) this.sub.unsubscribe();
   }
 }

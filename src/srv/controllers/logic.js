@@ -10,9 +10,7 @@ class LogicController{
             where: {
                 published: true
             }
-        }).then(data => res.status(200).send({
-                data,
-            }));
+        }).then(data => res.status(200).send({data}));
     }
     
     getCategories(req,res,next){
@@ -20,9 +18,7 @@ class LogicController{
         models.tblMediaTypes.findAll({
             attributes: { exclude: ['createdAt','updatedAt','typeId'] }
         })
-        .then(cat => res.status(200).send({
-            cat
-        }));
+        .then(cat => res.status(200).send({cat}));
     }
     
     getMediaSelection(req,res,next){
