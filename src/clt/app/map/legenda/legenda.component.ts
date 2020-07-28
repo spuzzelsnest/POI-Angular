@@ -43,12 +43,17 @@ export class LegendaComponent implements OnInit, OnDestroy {
       console.log(event);
       if(event == true){
           this.id = mediaType.id;
+          console.log("hi True: "+this.id);
           
           this.rest.getMediaSelection(this.id)
-                            .pipe(takeUntil(this.sub))
-                            .subscribe((extractSelection: any) =>{this.footage = extractSelection});
+                .pipe(takeUntil(this.sub))
+                .subscribe((extractSelection: any) =>{
+                        this.footage = extractSelection
+                });
+          
           console.log("IF: "+this.footage);
-      } 
+    }
+
   }
 
    ngOnDestroy(){
