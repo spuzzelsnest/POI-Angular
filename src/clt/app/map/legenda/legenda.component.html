@@ -1,11 +1,11 @@
 <div class="legenda">
-    <li *ngFor="let cat of mediaTypes">
+    <li *ngFor="let mediaType of mediaTypes">
         <mat-checkbox 
-          [(ngModel)]="cat.isChecked"
-          (ngModelChange)="onChange($event,cat)">
-            {{mediaTypes.length}}
-            <img src="assets/icons/marker{{cat.id}}.png">
-            {{cat.type}}
+          [(ngModel)]="mediaType.isChecked"
+          (ngModelChange)="onChange($event,mediaType)">
+            {{footage.length}}
+            <img src="assets/icons/marker{{mediaType.id}}.png">
+            {{mediaType.type}}
         </mat-checkbox>
     </li>
 </div>
