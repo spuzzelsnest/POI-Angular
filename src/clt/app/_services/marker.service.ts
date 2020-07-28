@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { RouterModule, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError  } from 'rxjs/operators';
-
 import * as L from 'leaflet';
 
 import { environment } from '../../environments/environment';
@@ -31,16 +30,10 @@ constructor(
     private popupService: PopUpService,
     private router: Router) { }
     
-    private extractMedia(res: Response){
+    private extractCats(res: Response){
       const media = [];
-      const body = Object(res['cat']);
+      const body = Object(res['cats']);
       return body || { }; 
-    }
-    
-    private extractFootage(res: Response){
-      const footage = [];
-      const body = Object(res['data']);
-      return body || { };
     }
     
     private extractSelection(res: Response){
@@ -53,16 +46,7 @@ constructor(
           return this.http.get<mediaModel[]>(endpoint+'/c')
               .pipe(
                 catchError(this.handleError(`Failed to get Media`)),
-                map(this.extractMedia)
-             );
-       }
-
-    getFootage(): Observable<footageModel[]> {
-
-          return this.http.get<footageModel[]>(endpoint + '/m')
-            .pipe(
-                catchError(this.handleError(`Failed to get Footage`)),
-                map(this.extractFootage)
+                map(this.extractCats)
              );
        }
 
@@ -90,33 +74,38 @@ constructor(
                   }
             });
 
+        this.getCategories().subscribe((extractCats: any)=>{
 
-        this.getFootage().subscribe((extractSelection: any) =>{
+            for(const c of extractCats) {
 
-          for (const m of extractSelection) {
+                this.id = c.id;
+                this.getMediaSelection(this.id).subscribe((extractSelection: any)=>{
 
+                      for (const m of extractSelection) {
 
-            const marker = L.marker([m.lat, m.lng],
-                           {icon:   L.icon({iconUrl:'assets/icons/marker'+m.typeId+'.png',
-                                         iconSize: [25, 37]})});
+                        const marker = L.marker([m.lat, m.lng],
+                                       {icon:   L.icon({iconUrl:'assets/icons/marker'+m.typeId+'.png',
+                                                     iconSize: [25, 37]})});
 
-               marker.bindPopup(this.popupService.makePicPopup(m));
-               markers.addLayer(marker);
-          }
+                           marker.bindPopup(this.popupService.makePicPopup(m));
+                           markers.addLayer(marker);
+                      }
 
-        });
+                });
+
+            }});
 
         map.addLayer(markers);
       }
 
     private handleError<T> (operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
+      return (error: any): Observable<T> => {
 
-    console.error(error);
-    console.log(`${operation} failed: ${error.message}`);
+        console.error(error);
+        console.log(`${operation} failed: ${error.message}`);
 
-    return of(result as T);
-  };
+        return of(result as T);
+      };
 }  
 
 }

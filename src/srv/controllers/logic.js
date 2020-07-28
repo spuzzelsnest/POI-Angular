@@ -3,22 +3,14 @@ import path from 'path';
 import models from '../models';
 
 class LogicController{
-
-    getFootage(req,res,next){
-  
-        models.tblFootages.findAll({
-            where: {
-                published: true
-            }
-        }).then(data => res.status(200).send({data}));
-    }
     
     getCategories(req,res,next){
+        let cats;
         
         models.tblMediaTypes.findAll({
             attributes: { exclude: ['createdAt','updatedAt','typeId'] }
         })
-        .then(cat => res.status(200).send({cat}));
+        .then(cats => res.status(200).send({cats}));
     }
     
     getMediaSelection(req,res,next){

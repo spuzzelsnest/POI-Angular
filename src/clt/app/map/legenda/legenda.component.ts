@@ -22,6 +22,7 @@ export class LegendaComponent implements OnInit, OnDestroy {
   mediaTypes:any = [];
   footage:any = [];
   id:number;
+  tot: number;
 
   constructor(
     public rest: MarkerService,
@@ -32,25 +33,22 @@ export class LegendaComponent implements OnInit, OnDestroy {
      this.rest.getCategories().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
      
     this.mediaTypes.forEach(mediaType =>{
-        console.log(mediaType)
+        console.log("onInit: "+ mediaType)
     //    this.mediaType.isChecked = true;
      
     })
   }
 
-  onChange($event, mediaType){
-      console.log(mediaType.isChecked);
-      if($event == true){
+  onChange(event, mediaType){
+      console.log(event);
+      if(event == true){
           this.id = mediaType.id;
-          console.log(this.id);
+          
           this.rest.getMediaSelection(this.id)
                             .pipe(takeUntil(this.sub))
                             .subscribe((extractSelection: any) =>{this.footage = extractSelection});
-          console.log(this.footage);
-      }else{
-          console.log(this.footage);
-          this.sub.unsubscribe;
-      }
+          console.log("IF: "+this.footage);
+      } 
   }
 
    ngOnDestroy(){
