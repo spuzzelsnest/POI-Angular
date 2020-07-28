@@ -91,7 +91,7 @@ constructor(
             });
 
 
-        this.getMediaSelection(this.id).subscribe((extractSelection: any) =>{
+        this.getFootage().subscribe((extractSelection: any) =>{
 
           for (const m of extractSelection) {
 
@@ -108,7 +108,7 @@ constructor(
 
         map.addLayer(markers);
       }
-  
+
     private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
