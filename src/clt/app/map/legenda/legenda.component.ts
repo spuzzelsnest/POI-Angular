@@ -52,6 +52,8 @@ export class LegendaComponent implements OnInit, OnDestroy {
                 });
           
           console.log("IF: "+this.footage);
+    }else{
+        console.log("ELSE: "+ event);
     }
 
   }
