@@ -6,7 +6,6 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
-.env
 
 # dependencies
 /node_modules
@@ -14,6 +13,9 @@ package-lock.json
 
 #Build dir
 .build/
+#env
+/src/clt/environments/environment.prod.ts
+.env
 
 # profiling files
 chrome-profiler-events*.json
