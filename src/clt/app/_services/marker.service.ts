@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { RouterModule, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError  } from 'rxjs/operators';
 import * as L from 'leaflet';
 
 import { environment } from '../../environments/environment';
-import { mediaModel } from './models/mediaModel';
+import { categoryModel } from './models/categoryModel';
 import { footageModel } from './models/footageModel';
 import { PopUpService } from './pop-up.service';
 
@@ -28,7 +27,7 @@ constructor(
     
     private http: HttpClient,
     private popupService: PopUpService,
-    private router: Router) { }
+    ) { }
     
     private extractCats(res: Response){
       const media = [];
@@ -42,16 +41,16 @@ constructor(
       return body || { };
     }
     
-    getCategories(): Observable<mediaModel[]>{
-          return this.http.get<mediaModel[]>(endpoint+'/c')
+    getCategories(): Observable<categoryModel[]>{
+          return this.http.get<categoryModel[]>(endpoint+'/c')
               .pipe(
                 catchError(this.handleError(`Failed to get Media`)),
                 map(this.extractCats)
              );
        }
 
-    getMediaSelection(id:number): Observable<any>{
-            return this.http.get<any>(endpoint+'/'+id+'/m')
+    getMedia(): Observable<footageModel[]>{
+            return this.http.get<footageModel[]>(endpoint+'/m')
               .pipe(
                   catchError(this.handleError(`Failed to get Selection`)),
                   map(this.extractSelection)
@@ -74,12 +73,9 @@ constructor(
                   }
             });
 
-        this.getCategories().subscribe((extractCats: any)=>{
+        this.getCategories().subscribe((extractCats: categoryModel[])=>{
 
-            for(const c of extractCats) {
-
-                this.id = c.id;
-                this.getMediaSelection(this.id).subscribe((extractSelection: any)=>{
+                this.getMedia().subscribe((extractSelection: footageModel[])=>{
 
                       for (const m of extractSelection) {
 
@@ -93,7 +89,7 @@ constructor(
 
                 });
 
-            }});
+            });
 
         map.addLayer(markers);
       }

@@ -13,26 +13,16 @@ class LogicController{
         .then(cats => res.status(200).send({cats}));
     }
     
-    getMediaSelection(req,res,next){
-        
-        if (!req.params.id){
-            return res.status(404).send({
-                success: 'false',
-                message: 'ID is required',
-            });
-        }else{
-            
+    getMedia(req,res,next){
+    
             models.tblFootages.findAll({
              where: {
                 published: true,
-                typeId: req.params.id
             }
         }).then(data => res.status(200).send({
                 data,
             }));
         }
-    }
-
 }
 
 const logicController = new LogicController();

@@ -16,7 +16,6 @@ import { MarkerService } from './../../_services/marker.service';
 export class LegendaComponent implements OnInit, OnDestroy {
 
   private sub = new Subject();
-  private map;
   isChecked:boolean;
   isLoading = false;
   mediaTypes:any = [];
@@ -34,7 +33,7 @@ export class LegendaComponent implements OnInit, OnDestroy {
      
     this.mediaTypes.forEach(mediaType =>{
         console.log("onInit: "+ mediaType)
-    //    this.mediaType.isChecked = true;
+        mediaType.isChecked = true;
      
     })
   }
@@ -45,13 +44,13 @@ export class LegendaComponent implements OnInit, OnDestroy {
           this.id = mediaType.id;
           console.log("hi True: "+this.id);
           
-          this.rest.getMediaSelection(this.id)
+          this.rest.getMedia()
                 .pipe(takeUntil(this.sub))
                 .subscribe((extractSelection: any) =>{
                         this.footage = extractSelection
-                });
-          
+          });
           console.log("IF: "+this.footage);
+         
     }else{
         console.log("ELSE: "+ event);
     }
