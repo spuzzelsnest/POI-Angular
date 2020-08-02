@@ -16,7 +16,7 @@ import { MarkerService } from './../../_services/marker.service';
 export class LegendaComponent implements OnInit, OnDestroy {
 
   private sub = new Subject();
-  isChecked:boolean;
+
   isLoading = false;
   mediaTypes:any = [];
   footage:any = [];
@@ -29,33 +29,28 @@ export class LegendaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-     this.rest.getCategories().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
+    this.rest.getCategories().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
      
     this.mediaTypes.forEach(mediaType =>{
         console.log("onInit: "+ mediaType)
         mediaType.isChecked = true;
      
-    })
+    });
   }
 
   onChange(event, mediaType){
       console.log(event);
-      if(event == true){
+      if(event.checked == true){
           this.id = mediaType.id;
           console.log("hi True: "+this.id);
           
           this.rest.getMedia()
                 .pipe(takeUntil(this.sub))
                 .subscribe((extractSelection: any) =>{
-                        this.footage = extractSelection
+                        this.footage = extractSelection;
           });
           console.log("IF: "+this.footage);
-         
-    }else{
-        console.log("ELSE: "+ event);
-    }
-
-  }
+  }}
 
    ngOnDestroy(){
        this.sub.next();

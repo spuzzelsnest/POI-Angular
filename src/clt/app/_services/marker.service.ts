@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError  } from 'rxjs/operators';
 import * as L from 'leaflet';
@@ -20,8 +20,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MarkerService {
-
-id:number;
 
 constructor(
     
