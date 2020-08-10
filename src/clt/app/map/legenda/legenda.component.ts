@@ -1,9 +1,7 @@
-import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCheckboxModule} from '@angular/material/checkbox';
-import { Subscription, Subject } from 'rxjs';
-import { takeUntil, take } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy} from '@angular/core';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { MarkerService } from './../../_services/marker.service';
 
