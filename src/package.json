@@ -7,7 +7,7 @@
     "ng": "ng",
     "start": "nodemon --exec babel-node src/srv/index.js",
     "build": "ng build",
-    "build-srv": "npm-run-all cleana transpile",
+    "build-srv": "npm-run-all clean transpile",
     "transpile": "babel /src/srv --out-dir .build/ww2web.backend",
     "clean": "rimraf .build/ww2web.backend",
     "test": "ng test",
