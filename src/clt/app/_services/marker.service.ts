@@ -100,6 +100,6 @@ constructor(
 
         return of(result as T);
       };
-}  
+    }  
 
 }
