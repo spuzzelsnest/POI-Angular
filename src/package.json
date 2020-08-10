@@ -5,11 +5,9 @@
   "main": "src/srv/index.js",
   "scripts": {
     "ng": "ng",
-    "start": "nodemon --exec babel-node src/srv/index.js",
-    "build": "ng build",
-    "build-srv": "npm-run-all clean transpile",
-    "transpile": "babel /src/srv --out-dir .build/ww2web.backend",
-    "clean": "rimraf .build/ww2web.backend",
+    "dev": "nodemon --exec babel-node src/srv/index.js",
+    "build": "babel /src/srv --out-dir .build/ww2web.backend",
+    "start": "dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
