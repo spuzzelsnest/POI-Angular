@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy, NgModule } from '@angular/core';
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil, take } from 'rxjs/operators';
 
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
+import { footageModel } from './../../_services/models/footageModel';
 import { MarkerService } from './../../_services/marker.service';
 
 @Component({
@@ -15,26 +16,23 @@ export class LegendaComponent implements OnInit, OnDestroy {
 
   private sub = new Subject();
 
-  isLoading = false;
-  mediaTypes:any = [];
   footage:any = [];
   id:number;
   tot: number;
 
   constructor(
-    public rest: MarkerService,
+    public markerService: MarkerService,
     ) { }
 
   ngOnInit(): void {
 
-    this.rest.getCategories().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
-     
-    this.mediaTypes.forEach(mediaType =>{
-        console.log("onInit: "+ mediaType)
-        mediaType.isChecked = true;
-     
+    this.footage = this.markerService.getMedia();
+    this.footage.forEach(m => {
+      console.log("onInit: "+ m.length);
     });
-  }
+    
+
+}
 
   onChange(event, mediaType){
       console.log(event);
@@ -42,7 +40,7 @@ export class LegendaComponent implements OnInit, OnDestroy {
           this.id = mediaType.id;
           console.log("hi True: "+this.id);
           
-          this.rest.getMedia()
+          this.markerService.getMedia()
                 .pipe(takeUntil(this.sub))
                 .subscribe((extractSelection: any) =>{
                         this.footage = extractSelection;

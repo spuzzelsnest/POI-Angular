@@ -27,31 +27,17 @@ constructor(
     private popupService: PopUpService,
     ) { }
     
-    private extractCats(res: Response){
-      const media = [];
-      const body = Object(res['cats']);
-      return body || { }; 
-    }
-    
-    private extractSelection(res: Response){
+    private extractMedia(res: Response){
       const selection = [];
       const body = Object(res['data']);
       return body || { };
     }
-    
-    getCategories(): Observable<categoryModel[]>{
-          return this.http.get<categoryModel[]>(endpoint+'/c')
-              .pipe(
-                catchError(this.handleError(`Failed to get Media`)),
-                map(this.extractCats)
-             );
-       }
 
     getMedia(): Observable<footageModel[]>{
             return this.http.get<footageModel[]>(endpoint+'/m')
               .pipe(
                   catchError(this.handleError(`Failed to get Selection`)),
-                  map(this.extractSelection)
+                  map(this.extractMedia)
                 );
       }
 
@@ -71,24 +57,16 @@ constructor(
                   }
             });
 
-        this.getCategories().subscribe((extractCats: categoryModel[])=>{
+        this.getMedia().subscribe((extractMedia: footageModel[])=>{
+          for (const m of extractMedia) {
 
-                this.getMedia().subscribe((extractSelection: footageModel[])=>{
-
-                      for (const m of extractSelection) {
-
-                        const marker = L.marker([m.lat, m.lng],
-                                       {icon:   L.icon({iconUrl:'assets/icons/marker'+m.typeId+'.png',
-                                                     iconSize: [25, 37]})});
-
-                           marker.bindPopup(this.popupService.makePicPopup(m));
-                           markers.addLayer(marker);
-                      }
-
-                });
-
-            });
-
+            const marker = L.marker(
+                                [m.lat, m.lng],
+                                {icon:   L.icon({iconUrl:'assets/icons/marker'+m.typeId+'.png',iconSize: [25, 37]})});
+                                marker.bindPopup(this.popupService.makePicPopup(m));
+                                markers.addLayer(marker);
+            }
+        });
         map.addLayer(markers);
       }
 

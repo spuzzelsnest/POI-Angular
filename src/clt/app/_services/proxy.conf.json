@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "http://localhost:1944",
+        "target": "http://piras:1944",
         "secure": false
     }
 }
