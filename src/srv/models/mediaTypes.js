@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true 
     },
     type: DataTypes.STRING
-  }, {});
+  }, {timestamps: false,});
     
   mediaTypes.associate = function(models) {
 
-    mediaTypes.hasMany (models.tblFootages,{
+    mediaTypes.belongsTo (models.tblFootages,{
         foreignKey: 'typeId',
         source: 'id',
     })

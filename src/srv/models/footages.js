@@ -21,8 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     
   footage.associate = function(models) {
       
-   footage.belongsTo (models.tblMediaTypes, {
-        through: 'typeId'
+   footage.belongsTo(models.tblMediaTypes, {
+    foreignKey: 'typeId',
+    targetKey: 'id'
     })
 };  
 
