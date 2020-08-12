@@ -42,7 +42,7 @@ constructor(
     getCats(): Observable<categoryModel[]>{
       return this.http.get<categoryModel[]>(endpoint+'/c')
           .pipe(
-            catchError(this.handleError(`Failed to get Media`)),
+            catchError(this.handleError(`Failed to get Categories`)),
             map(this.extractCats)
           );
     }
@@ -50,7 +50,7 @@ constructor(
     getFootage(): Observable<footageModel[]>{
       return this.http.get<footageModel[]>(endpoint+'/m')
           .pipe(
-              catchError(this.handleError(`Failed to get Selection`)),
+              catchError(this.handleError(`Failed to get Footage`)),
               map(this.extractFootage)
             );
     }

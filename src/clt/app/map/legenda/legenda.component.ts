@@ -18,7 +18,6 @@ export class LegendaComponent implements OnInit, OnDestroy {
   mediaTypes:any = [];
   footage:any = [];
   id:number;
-  tot: number;
 
   constructor(
     public markerService: MarkerService,
@@ -27,7 +26,7 @@ export class LegendaComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
       this.mediaTypes = this.markerService.getCats();
       this.footage = this.markerService.getFootage();
-      
+
     }
 
     onChange(event, mediaType){
@@ -38,8 +37,8 @@ export class LegendaComponent implements OnInit, OnDestroy {
           
           this.markerService.getFootage()
                 .pipe(takeUntil(this.sub))
-                .subscribe((extractSelection: any) =>{
-                        this.footage = extractSelection;
+                .subscribe((extractFoot: any) =>{
+                        this.footage = extractFoot;
           });
           console.log("IF: "+this.footage);
         }
