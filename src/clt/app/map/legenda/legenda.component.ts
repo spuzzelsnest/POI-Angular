@@ -24,8 +24,9 @@ export class LegendaComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
-      this.mediaTypes = this.markerService.getCats();
-      this.footage = this.markerService.getFootage();
+      
+      this.markerService.getFootage().subscribe((footage: {}) =>{this.footage = footage;});
+      this.markerService.getCats().subscribe((mediaTypes: {}) => {this.mediaTypes = mediaTypes;});
 
     }
 
