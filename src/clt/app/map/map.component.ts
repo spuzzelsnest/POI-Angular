@@ -19,7 +19,6 @@ export class MapComponent implements AfterViewInit {
      this.initMap();
      this.markerService.makeMarkers(this.map);
   }
-
     private initMap(): void{
         this.map = L.map('map').setView([50.1, 6], 6);
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{

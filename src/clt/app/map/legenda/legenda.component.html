@@ -1,5 +1,6 @@
 <div class="legenda">
-    <li *ngFor="let mediaType of mediaTypes">
+    Total Footage: {{footage.length}}
+    <li *ngFor="let m of mediaTypes">
         <mat-checkbox  [checked]="mediaType.checked" 
           (change)="onChange($event,mediaType)">
             {{footage.length}} {{mediaType.id}}

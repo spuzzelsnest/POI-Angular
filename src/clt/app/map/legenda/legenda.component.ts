@@ -25,17 +25,14 @@ export class LegendaComponent implements OnInit, OnDestroy {
     public markerService: MarkerService,
     ) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
+      this.footage = this.markerService.getMedia();
+      console.log((this.footage).length);
+    }
 
-    this.footage = this.markerService.getMedia();
-    this.footage.forEach(m => {
-      console.log("onInit: "+ m.length);
-    });
-}
-
-  onChange(event, mediaType){
-      console.log(event);
-      if(event.checked == true){
+    onChange(event, mediaType){
+        console.log(event);
+        if(event.checked == true){
           this.id = mediaType.id;
           console.log("hi True: "+this.id);
           
@@ -45,10 +42,11 @@ export class LegendaComponent implements OnInit, OnDestroy {
                         this.footage = extractSelection;
           });
           console.log("IF: "+this.footage);
-  }}
+        }
+      }
 
-   ngOnDestroy(){
-       this.sub.next();
-       this.sub.complete();
-  }
+    ngOnDestroy(){
+        this.sub.next();
+        this.sub.complete();
+    }
 }
