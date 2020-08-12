@@ -1,11 +1,4 @@
 <div class="legenda">
     Total Footage: {{footage.length}}
-    <li *ngFor="let m of mediaTypes">
-        <mat-checkbox  [checked]="mediaType.checked" 
-          (change)="onChange($event,mediaType)">
-            {{footage.length}} {{mediaType.id}}
-            <img src="assets/icons/marker{{mediaType.id}}.png">
-            {{mediaType.type}}
-        </mat-checkbox>
-    </li>
+
 </div>
