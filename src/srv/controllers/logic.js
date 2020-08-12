@@ -6,13 +6,12 @@ class LogicController{
     
     getMedia(req,res,next){
             models.tblFootages.findAll({
+            include:[{
+                    model: models.mediaTypes,
+                }],
             where: {
                 published: true,
-            },
-            include:[{
-                model: mediaTypes,
-                as: "mediaType"
-            }]
+            }
         }).then(data => res.status(200).send({
                 data,
             }));
