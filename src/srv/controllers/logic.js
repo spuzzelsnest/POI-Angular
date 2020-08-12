@@ -5,11 +5,14 @@ import models from '../models';
 class LogicController{
     
     getMedia(req,res,next){
-    
             models.tblFootages.findAll({
-             where: {
+            where: {
                 published: true,
-            }
+            },
+            include:[{
+                model: mediaTypes,
+                as: "mediaType"
+            }]
         }).then(data => res.status(200).send({
                 data,
             }));
