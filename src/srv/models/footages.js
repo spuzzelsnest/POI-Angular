@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     
   footage.associate = function(models) {
       
-   footage.hasOne(models.tblMediaTypes, {
-        foreignKey: 'typeId'
+   footage.belongsTo (models.tblMediaTypes, {
+        through: 'typeId'
     })
 };  
 

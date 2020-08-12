@@ -9,8 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     
   mediaTypes.associate = function(models) {
 
-    mediaTypes.hasMany(models.tblFootages,{
-        foreignKey: 'typeId'
+    mediaTypes.hasMany (models.tblFootages,{
+        foreignKey: 'typeId',
+        source: 'id',
     })
   };
   return mediaTypes;
